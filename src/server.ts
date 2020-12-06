@@ -1,8 +1,10 @@
 import express from 'express'; // requisições e respostas de rota
 
+import './database/connection';
+
 const app = express();
 
-app.get('/', (request, response) => {
+app.get('/users/:id', (request, response) => {
   return response.json({ message: 'Hello World!'})
 });
 
