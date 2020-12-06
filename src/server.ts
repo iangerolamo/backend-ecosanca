@@ -1,10 +1,13 @@
 import express from 'express'; // requisições e respostas de rota
-
 import './database/connection';
 
 const app = express();
 
-app.get('/users/:id', (request, response) => {
+app.use(express.json());
+
+app.post('/ecorecycles', (request, response) => {
+  console.log(request.body)
+
   return response.json({ message: 'Hello World!'})
 });
 
