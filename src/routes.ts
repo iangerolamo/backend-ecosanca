@@ -1,34 +1,10 @@
 import { Router } from 'express';
-import { getRepository} from 'typeorm';
-import Ecorecycle from './models/Ecorecycle';
+import EcorecyclesController from './controllers/EcorecyclesController';
 
 
 const routes = Router();
 
-routes.post('/ecorecycles', async (request, response) => {
-  const {
-    name,
-    latitude,
-    longitude,
-    about,
-    instructions,
-    opening_hours,
-    open_on_weekends,
-  } = request.body;
+routes.get('/ecorecycles', EcorecyclesController.index);
+routes.post('/ecorecycles', EcorecyclesController.create);
 
-  const ecorecyclesRepository = getRepository(Ecorecycle);
-
-  const ecorecycle =  ecorecyclesRepository.create({
-    name,
-    latitude,
-    longitude,
-    about,
-    instructions,
-    opening_hours,
-    open_on_weekends,
-  });
-
-  await ecorecyclesRepository.save(ecorecycle);
-
-  return response.status(201).json(ecorecycle)
-});
+export default routes;
