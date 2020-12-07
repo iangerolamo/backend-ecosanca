@@ -17,7 +17,7 @@ export default {
 
     const ecorecyclesRepository = getRepository(Ecorecycle);
 
-    const ecorecycles = await ecorecyclesRepository.findOneOrFail();
+    const ecorecycles = await ecorecyclesRepository.findOneOrFail(id);
 
     return response.json(ecorecycles);
   },
