@@ -12,6 +12,16 @@ export default {
     return response.json(ecorecycles);
   },
 
+  async show(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const ecorecyclesRepository = getRepository(Ecorecycle);
+
+    const ecorecycles = await ecorecyclesRepository.findOneOrFail();
+
+    return response.json(ecorecycles);
+  },
+
   async create(request: Request, response: Response) {
     const {
       name,
