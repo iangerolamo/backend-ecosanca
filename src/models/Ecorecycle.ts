@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm';
-
+import Image from './Image';
 
 @Entity('ecorecycles')
 export default class Ecorecycle {
@@ -26,5 +26,11 @@ export default class Ecorecycle {
   
   @Column()
   open_on_weekends: boolean;
+
+  @OneToMany(() => Image, image => image.ecorecycle, {
+    cascade: ['insert', 'update']
+  })
+  @JoinColumn({ name: 'ecorecycle_id'})
+  images: Image[];
 
 }
